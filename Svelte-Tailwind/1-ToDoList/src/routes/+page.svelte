@@ -2,23 +2,40 @@
 // @ts-nocheck
 
 let text = '';
-let contentidable = 'contenteditable="true"'
 let toDoItems = [];
-
+let i = 0
 function add(){
-
-    console.log(text)
-    
+        
     toDoItems = toDoItems
-
+    
     toDoItems.push({id : toDoItems.length, text : text})
-    }
+    i++
+    localStorage.setItem(i, JSON.stringify(toDoItems))
     
-function deleteTodo(id){
-    toDoItems.splice(id,1)
-    toDoItems = toDoItems
 }
-    
+
+if (typeof localStorage !== 'undefined'){        
+
+    i = toDoItems.length
+
+  
+        for(i; i--; i > 0){
+
+            let item = localStorage.getItem(i)
+        if(item !== null){
+        toDoItems = JSON.parse(item)
+            toDoItems.push()
+        }
+    }
+}
+
+function deleteTodo(index){
+    toDoItems.splice(index,1)
+    toDoItems = toDoItems
+    localStorage.removeItem(i);
+
+}
+
 </script>
 
     <div class="w-[600px] border-neutral-900 border h-[500px] m-auto">
